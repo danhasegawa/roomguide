@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -40,15 +41,15 @@ fun ContactScreen(
             }) {
                 Icon(
                     imageVector = Icons.Default.Add,
-                    contentDescription = "Add Contact"
+                    contentDescription = "Add contact"
                 )
             }
         },
-        modifier = Modifier.padding(16.dp)
     ) { padding ->
         if (state.isAddingContact) {
             AddContactDialog(state = state, onEvent = onEvent)
         }
+
         LazyColumn(
             contentPadding = padding,
             modifier = Modifier.fillMaxSize(),
@@ -57,7 +58,7 @@ fun ContactScreen(
             item {
                 Row(
                     modifier = Modifier
-                        .fillMaxSize()
+                        .fillMaxWidth()
                         .horizontalScroll(rememberScrollState()),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
@@ -76,14 +77,13 @@ fun ContactScreen(
                                 }
                             )
                             Text(text = sortType.name)
-
                         }
                     }
                 }
             }
             items(state.contacts) { contact ->
                 Row(
-                    modifier = Modifier.fillMaxSize()
+                    modifier = Modifier.fillMaxWidth()
                 ) {
                     Column(
                         modifier = Modifier.weight(1f)
@@ -99,12 +99,11 @@ fun ContactScreen(
                     }) {
                         Icon(
                             imageVector = Icons.Default.Delete,
-                            contentDescription = "Delete Contact"
+                            contentDescription = "Delete contact"
                         )
                     }
                 }
             }
         }
-
     }
 }

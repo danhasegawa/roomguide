@@ -26,7 +26,6 @@ class MainActivity : ComponentActivity() {
                 override fun <T : ViewModel> create(modelClass: Class<T>): T {
                     return ContactViewModel(db.dao) as T
                 }
-
             }
         }
     )
@@ -34,12 +33,10 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            RoomGuideAndroidTheme {
-                val state by viewModel.state.collectAsState()
-                ContactScreen(state = state, onEvent = viewModel::onEvent)
-
-            }
+        RoomGuideAndroidTheme {
+            val state by viewModel.state.collectAsState()
+            ContactScreen(state = state, onEvent = viewModel::onEvent)
+        }
         }
     }
 }
-
